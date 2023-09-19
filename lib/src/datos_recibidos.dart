@@ -16,9 +16,9 @@ class DatosPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Los datos son:'),
-            Text('Nombre: ${data?.texto}'),
-            Text('Sexo: ${data?.sexo}')
+            Text('Los datos son: ${data?.get_tipo()}'),
+            Text('Tu imc es ${data?.imc}'),
+            Image.asset(data!.get_url_img())
           ],
         ),
       ),

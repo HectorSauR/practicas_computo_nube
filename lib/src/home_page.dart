@@ -9,16 +9,72 @@ class HomePage extends StatefulWidget {
 }
 
 class Data{
-  String texto;
-  String sexo;
+  double? peso;
+  double? estatura;
+  double? imc;
 
-  Data({required this.texto, required this.sexo});
+  Data(double peso, double estatura){
+    this.peso = peso;
+    this.estatura = estatura;
+    imc = peso / (estatura * estatura);
+    imc = (imc!*10000);
+  }
+
+  String get_url_img(){
+    if(imc! < 18){
+      return 'assets/imc/seco.jpg';
+    }
+
+    if(imc! >= 18 && imc! < 25){
+      return 'assets/imc/normal.jpg';
+    }
+
+    if(imc! >= 25 && imc! < 27){
+      return 'assets/imc/obeso.jpg';
+    }
+
+    if(imc! >= 27 && imc! < 30){
+      return 'assets/imc/obeso1.jpg';
+    }
+
+    if(imc! >= 30 && imc! < 40){
+      return 'assets/imc/obeso2.jpg';
+    }
+
+    return 'assets/imc/obeso3.jpg';
+  }
+
+  String get_tipo(){
+    if(imc! < 18){
+      return 'Peso Bajo';
+    }
+
+    if(imc! >= 18 && imc! < 25){
+      return 'Normal';
+    }
+
+    if(imc! >= 25 && imc! < 27){
+      return 'Obesidad';
+    }
+
+    if(imc! >= 27 && imc! < 30){
+      return 'Obesidad 1';
+    }
+
+    if(imc! >= 30 && imc! < 40){
+      return 'Obesidad 2';
+    }
+
+    return 'Obesidad 3';
+  }
 }
 
 class _HomePageState extends State<HomePage> {
-  final ctrlnom = TextEditingController();
-  final data = Data(texto: '', sexo: '');
-  int _valor = 1;
+  final ctrlpeso = TextEditingController();
+  final ctrlestatura = TextEditingController();
+
+  Data? data = null;
+  double _valor = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -32,26 +88,23 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
-            controller: ctrlnom,
-            keyboardType: TextInputType.name,
+            controller: ctrlpeso,
+            keyboardType: TextInputType.number,
             decoration: const InputDecoration(
-              hintText: 'Ingresa el nombre',
+              hintText: 'Ingresa el peso',
               contentPadding: EdgeInsets.all(20)
             ),
           ),
           const SizedBox(height: 20,),
-          DropdownButton(
-            value: _valor,
-            items: const [
-              DropdownMenuItem(value: 1, child: Text('Mujer')),
-              DropdownMenuItem(value: 2, child: Text('Hombre'))
-            ],
-            onChanged: (selected){
-              setState(() {
-                _valor = selected ?? 1;
-              });
-            },
+          TextField(
+            controller: ctrlestatura,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              hintText: 'Ingresa la estatura',
+              contentPadding: EdgeInsets.all(20)
+            ),
           ),
+          const SizedBox(height: 20,),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               primary: Colors.orange[200], onPrimary: Colors.white
@@ -59,13 +112,10 @@ class _HomePageState extends State<HomePage> {
             child: const Text('Enviar'),
             onPressed: (){
               setState(() {
-                data.texto = ctrlnom.text;
+                double estatura = double.parse(ctrlestatura.text);
+                double peso = double.parse(ctrlpeso.text);
 
-                if(_valor == 1){
-                  data.sexo = 'Mujer';
-                }else{
-                  data.sexo = 'Hombre';
-                }
+                data = Data(peso, estatura);
 
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => DatosPage(data: data)));
               });
