@@ -29,27 +29,25 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Practica 09 - Pokédex'),
-        centerTitle: true,
-        backgroundColor: Colors.red,
-      ),
-      body: ListView(
-        children: [
-          for (var pokemon in pokemons)
-            ListTile(
-              contentPadding:
-                  EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 0),
-              title: Text(pokemon),
-              leading: CircleAvatar(
+        appBar: AppBar(
+          title: Text('Practica 10 - Pokédex'),
+          centerTitle: true,
+          backgroundColor: Colors.red,
+        ),
+        body: ListView.builder(
+          itemCount: pokemons.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              onTap: () {},
+              title: Text(pokemons[index]),
+              leading: const CircleAvatar(
                 radius: 22.0,
                 backgroundImage: NetworkImage(
                     "https://w7.pngwing.com/pngs/1014/126/png-transparent-pokeball-illustration-pokemon-go-pokeball-trademark-logo-nintendo-3ds-thumbnail.png"),
               ),
-              trailing: Icon(Icons.arrow_right),
-            ),
-        ],
-      ),
-    );
+              trailing: const Icon(Icons.arrow_right),
+            );
+          },
+        ));
   }
 }
