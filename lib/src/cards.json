@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Rick Sanchez",
+        "url": "assets/rick.jpg"
+    },
+    {
+        "name": "Morty Smith",
+        "url": "assets/morty.jpg"
+    },
+    {
+        "name": "Summer Smith",
+        "url": "assets/summer.jpg"
+    },
+    {
+        "name": "Beth Smith",
+        "url": "assets/beth.jpg"
+    },
+    {
+        "name": "Jerry Smith",
+        "url": "assets/jerry.jpg"
+    },
+    {
+        "name": "Birdperson",
+        "url": "assets/birdperson.jpg"
+    },
+    {
+        "name": "Mr. Meeseeks",
+        "url": "assets/meeseeks.jpg"
+    },
+    {
+        "name": "Squanchy",
+        "url": "assets/squanchy.jpg"
+    },
+    {
+        "name": "Snowball",
+        "url": "assets/snowball.jpg"
+    },
+    {
+        "name": "Tammy Gueterman",
+        "url": "assets/tammy.jpg"
+    },
+    {
+        "name": "Unity",
+        "url": "assets/unity.jpg"
+    },
+    {
+        "name": "Noob-Noob",
+        "url": "assets/noobnoob.jpg"
+    }
+]
